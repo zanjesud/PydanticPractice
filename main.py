@@ -1,6 +1,7 @@
 import requests
 from models import Student, Module
 import json
+from pprint import pprint
 
 # URL referingcing for basic validation checks 
 # url = 'https://raw.githubusercontent.com/bugbytes-io/datasets/master/students_v1.json'
@@ -15,10 +16,15 @@ data = response.json()
 
 
 
-# for student in data:
-#     model = Student(**student)
-#     # print(model.model_dump())
-#     # print(model)
-#     print(model.model_dump_json())
-
-print(json.dumps(Student.model_json_schema(), indent =2))
+for student in data:
+    model = Student(**student)
+    # print(model.model_dump())
+    # print(model)
+    excludes = {
+        'id' : True,
+        'modules' : {'__all__': {'registration_code'}}
+    }
+    # print(model.model_dump_json(exclude ={'id','module'}))  #instead of mentioning exclude in main class we can mention here as well 
+    # pprint(model.model_dump(exclude =excludes))
+    #print(json.dumps(Student.model_json_schema(), indent =2))
+    pprint(model.department)

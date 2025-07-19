@@ -1,5 +1,5 @@
 import requests
-from pydantic import BaseModel, confloat, field_validator
+from pydantic import BaseModel, confloat, field_validator,Field
 import uuid
 from datetime import date ,time, timedelta, datetime
 from enums import DepartmentEnum
@@ -13,6 +13,7 @@ class Module(BaseModel):
     registration_code: str
 
 class Student(BaseModel):
+    # id: uuid.UUID = Field(exclude = True)
     id: uuid.UUID
     name: str
     date_of_birth: date
@@ -20,7 +21,15 @@ class Student(BaseModel):
     course: str | None
     department: DepartmentEnum  #union of data types
     fees_paid: bool
-    modules: list[Module] = []
+    modules: list[Module] = Field(default =[],max_items =10)
+    # modules: list[Module] = Field(default =[],max_item = 10,exclude = True)  #default value empty  , max item 10 exclude field when exported
+
+    class Config:
+        use_enum_values = True  # it will give only raw values of enum fields notw with object details 
+        title = 'Student Model' # this title is mentioned in scema file when we export schema
+        extra = 'allow' #{forbid,ignore,allow} to allow or forbid extra data in case ignore field is not recorded , 
+                        #but in allow case filed is recorded and we cas access it.
+    
 
     #custom validator for module should be only 3 
     @field_validator('modules')
