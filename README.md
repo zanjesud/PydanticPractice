@@ -24,7 +24,9 @@ This project covers a wide range of Pydantic features, from basic to advanced.
 
 ### Validation
 
-*   **Custom Validators**: Writing custom functions to perform complex validation logic using the `@validator` decorator (for Pydantic v1 style) or `@field_validator` (for Pydantic v2+).
+*   **Field Validators**: Writing custom functions to perform validation on a single field using the `@field_validator` decorator (Pydantic v2+).
+*   **Model Validators**: Writing custom functions to perform validation on the entire model, allowing for checks that involve multiple fields, using the `@model_validator` decorator (Pydantic v2+).
+*   **Legacy Validators**: The `@validator` decorator from Pydantic v1 is also supported for backward compatibility.
 
 ### Advanced Model Features
 
@@ -34,7 +36,8 @@ This project covers a wide range of Pydantic features, from basic to advanced.
     *   Creating aliases for fields to handle data from sources with different naming conventions (e.g., camelCase JSON to snake_case Python).
     *   Controlling field inclusion/exclusion during model export.
 *   **Model Configuration**:
-    *   Using `model_config` (`ConfigDict`) to control model behavior, such as allowing extra fields (`extra='allow'`), making models immutable (`frozen=True`), etc.
+    *   Controlling model behavior via configuration. In Pydantic v2, this is done with `model_config = ConfigDict(...)`. For backward compatibility with Pydantic v1, an inner `class Config` can also be used, as demonstrated in this project.
+    *   Examples include allowing extra fields (`extra='allow'`), making models immutable (`frozen=True`), and using enum values directly (`use_enum_values=True`).
 
 ### JSON Schema Integration
 

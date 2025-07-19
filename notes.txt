@@ -31,12 +31,19 @@ Using field() fucntion for:
 Advacnced exporting techniques
 Pydantic model config Classes
 
+Validator 
+    Order of validator 
+    Root Validator 
+    pre-validators
+    Apply Validators to each item in collection
+
  
 
 
 Pydantic Blog post: https://www.bugbytes.io/posts/introduction-to-pydantic/
                     https://www.bugbytes.io/posts/pydantic-nested-models-and-json-schemas/
                     https://bugbytes.io/posts/pydantic-field-function-and-model-config/
+                    https://bugbytes.io/posts/pydantic-validators/
 
 Github Dataset: https://github.com/bugbytes-io/datasets
 Pydantic Models: https://docs.pydantic.dev/usage/models/

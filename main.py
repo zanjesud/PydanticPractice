@@ -15,7 +15,7 @@ data = response.json()
 
 
 
-
+"""
 for student in data:
     model = Student(**student)
     # print(model.model_dump())
@@ -28,3 +28,11 @@ for student in data:
     # pprint(model.model_dump(exclude =excludes))
     #print(json.dumps(Student.model_json_schema(), indent =2))
     pprint(model.department)
+    """
+
+for student in data:
+    try:
+        model = Student(**student)
+        print(f"GPA : {model.GPA}, Department: {model.department}")
+    except ValueError as e:
+        print(f"Error : {e}")

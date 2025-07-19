@@ -1,9 +1,9 @@
 import requests
-from pydantic import BaseModel, confloat, field_validator,Field
+from pydantic import BaseModel, confloat, field_validator,Field, model_validator
 import uuid
 from datetime import date ,time, timedelta, datetime
 from enums import DepartmentEnum
-from typing import Literal
+from typing import Literal,Self
 #Creating Class for nested attributes
 class Module(BaseModel):
     id: int | uuid.UUID
@@ -30,6 +30,19 @@ class Student(BaseModel):
         extra = 'allow' #{forbid,ignore,allow} to allow or forbid extra data in case ignore field is not recorded , 
                         #but in allow case filed is recorded and we cas access it.
     
+
+    @model_validator(mode ='after')
+    def validate_gpa_and_department(self) -> Self:
+        dept =self.department
+        gpa = self.GPA
+        dept_science = dept == DepartmentEnum.SCIENCE_AND_ENGINEERING.value
+        valid_gpa = gpa >= 3.0
+        if dept_science:
+            if not valid_gpa:
+                raise ValueError("GPA not high enough for Science and Engineering Field")
+        return self  
+        
+
 
     #custom validator for module should be only 3 
     @field_validator('modules')
