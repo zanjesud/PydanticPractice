@@ -1,0 +1,8 @@
+# For data validation and modeling
+pydantic
+
+# For making HTTP requests to fetch data
+requests
+
+# For generating Pydantic models from JSON Schemas
+datamodel-code-generator

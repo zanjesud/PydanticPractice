@@ -1,0 +1,45 @@
+Pydantic Library Python 
+
+Use cases : 
+DAta VAlidation 
+setting management 
+UsedBy FastAPI 
+Uses Type Annotations 
+
+
+Define Pydantic Model Classes 
+Uses type-Annotation schema
+Define Optional Constrained & Enum Types
+Wrire Custom validator Functions
+Export models to json data or Dictonary
+
+Nested Pydantic models 
+Using typing.literal to constrain values
+defining default values for fields
+Generating JSON Schema from Pydantic models
+AUto-Generating Pydantic models fromm JSON Schema definitions
+We used https://pypi.org/project/datamodel-code-generator/
+for generating schema by above command datamodel-codegen --input ModuleSchema.json --output modulesmodel.py
+datamodel-codegen --input StudentSchema.json --output studentmodel.py
+we dont get custom validator with this approach 
+
+
+Using field() fucntion for:
+    default values and dynamic defaults
+    creatiung aliases 
+    controliing whether fields should be exported
+Advacnced exporting techniques
+Pydantic model config Classes
+
+ 
+
+
+Pydantic Blog post: https://www.bugbytes.io/posts/introduction-to-pydantic/
+                    https://www.bugbytes.io/posts/pydantic-nested-models-and-json-schemas/
+                    https://bugbytes.io/posts/pydantic-field-function-and-model-config/
+
+Github Dataset: https://github.com/bugbytes-io/datasets
+Pydantic Models: https://docs.pydantic.dev/usage/models/
+Pydantic Validators: https://docs.pydantic.dev/latest/concepts/validators/
+Pydantic Schema: https://docs.pydantic.dev/usage/schema/
+JSON Schema: https://json-schema.org/
